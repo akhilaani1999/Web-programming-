@@ -1,0 +1,132 @@
+<html>
+
+<head>
+    <title>Registration</title>
+   
+</head>
+
+<body>
+    <center>
+        <h1>REGISTRATION FORM</h1>
+    </center>
+    <form name="form" action="" method="POST" onsubmit="return validateForm()">
+        <table border="1">
+            <tr>
+                <td>NAME</td>
+                <td><input type="text" name="fname" id="fname"></td>
+            </tr>
+            <tr>
+                <td>ADDRESS</td>
+                <td><input type="text" name="addr" id="addr"></td>
+            </tr>
+            <tr>
+                <td>EMAIL</td>
+                <td><input type="email" name="email" id="email"></td>
+            </tr>
+            <tr>
+                <td>PHONE NUMBER</td>
+                <td><input type="tel" name="mob" id="mob"></td>
+            </tr>
+            <tr>
+                <td>LANGUAGE</td>
+                <td>
+                    <select name="language" id="language">
+                        <option>Select</option>
+                        <option>Malayalam</option>
+                        <option>English</option>
+                        <option>Hindi</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>AGE</td>
+                <td>
+                    20-25<input type="checkbox" name="age20to25">
+                    26-30<input type="checkbox" name="age26to30">
+                </td>
+            </tr>
+            <tr>
+                <td>GENDER</td>
+                <td>
+                    Male<input type="radio" name="gender" value="Male">
+                    Female<input type="radio" name="gender" value="Female">
+                </td>
+            </tr>
+            <tr class="center">
+                <th colspan="3"><input type="submit" value="SUBMIT"></th>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function validateForm() {
+            var fname = document.form.fname.value;
+            var add = document.form.addr.value;
+            var email = document.form.email.value;
+            var mob = document.form.mob.value;
+            var language = document.form.language.value;
+            var age20to25 = document.form.age20to25.checked;
+            var age26to30 = document.form.age26to30.checked;
+            var gender = document.querySelector('input[name="gender"]:checked');
+
+            var ren = /[0-9!@#$%^&*]/;
+            var qw = /^(?=.*\d)(?=.*[a-z])(?=.*[@])(?=.*[gmail])(?=.*[.])(?=.*[com])/;
+
+            if (fname == "") {
+                alert("Enter The Name!!");
+                document.form.fname.focus();
+                return false;
+            } else if (ren.test(fname)) {
+                alert("Enter Valid Name!!");
+                document.form.fname.focus();
+                return false;
+            }
+
+            if (add == "") {
+                alert("Enter The Address!!");
+                document.form.add.focus();
+                return false;
+            }
+
+            if (email == "") {
+                alert("Enter email!!");
+                document.form.email.focus();
+                return false;
+            } else if (!qw.test(email)) {
+                alert("Enter Valid mail id!!");
+                document.form.email.focus();
+                return false;
+            }
+
+            if (mob == "") {
+                alert("Enter Mobile number");
+                return false;
+            } else if (isNaN(mob)) {
+                alert("Enter valid Mobile number");
+                return false;
+            } else if (mob.length != 10) {
+                alert("Enter Mobile number with 10 digits");
+                return false;
+            }
+
+            if (language == "Select") {
+                alert("Select a Language");
+                return false;
+            }
+
+            if (!age20to25 && !age26to30) {
+                alert("Select at least one age group");
+                return false;
+            }
+
+            if (!gender) {
+                alert("Select a gender");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>
+
